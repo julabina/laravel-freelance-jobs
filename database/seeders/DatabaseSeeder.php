@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\User;
 use App\Models\Mission;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,14 +22,26 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
         
+        User::factory()->create([
+            'name' => 'Julien',
+            'email' => 'test@test.fr',
+            'role' => 'freelance',
+        ]);
+        
+        User::factory()->create([
+            'name' => 'Roger',
+            'email' => 'test2@test.fr',
+            'role' => 'client',
+        ]);
+
         User::factory(5)->create([
             'role' => 'client',
-            ])->each(function ($user) {
+        ])->each(function ($user) {
             Mission::factory(2)->create([
                 'remote' => false,
             ]);
         });
-        
+
         User::factory(5)->create([
             'role' => 'client',
         ])->each(function ($user) {

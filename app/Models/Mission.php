@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Mission extends Model
@@ -38,13 +39,19 @@ class Mission extends Model
         return $this->belongsTo(User::class);
     }
 
-    /*  public function mission_like(): HasMany
-     {
-         return $this->hasMany(MissionLike::class);
-     }
+    /**
+     * @return HasMany<MissionLike>
+     */
+    public function mission_like(): HasMany
+    {
+        return $this->hasMany(MissionLike::class);
+    }
 
-     public function mission_proposal(): HasMany
-     {
-         return $this->hasMany(MissionProposal::class);
-     } */
+    /**
+     * @return HasMany<MissionProposal>
+     */
+    public function mission_proposal(): HasMany
+    {
+        return $this->hasMany(MissionProposal::class);
+    }
 }

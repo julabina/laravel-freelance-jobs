@@ -46,8 +46,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Undocumented function
-     *
      * @return HasMany<Mission>
      */
     public function mission(): HasMany
@@ -55,15 +53,19 @@ class User extends Authenticatable
         return $this->hasMany(Mission::class);
     }
 
-    /*
-     public function mission_like()
+    /**
+     * @return HasMany<MissionLike>
+     */
+    public function mission_like(): HasMany
     {
         return $this->hasMany(MissionLike::class);
     }
 
-    public function mission_proposal()
+    /**
+     * @return HasMany<MissionProposal>
+     */
+    public function mission_proposal(): HasMany
     {
         return $this->hasMany(MissionProposal::class);
     }
-    */
 }
