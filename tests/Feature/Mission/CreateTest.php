@@ -10,9 +10,7 @@ use function Pest\Laravel\assertDatabaseCount;
 it('has a create mission page', function () {
     actingAs(User::factory()->create([
         'role' => 'client',
-    ]));
-
-    $this->get(route('mission.create'))->assertOk();
+    ]))->get(route('mission.create'))->assertOk();
 });
 
 it('can store a remote mission', function () {
@@ -20,7 +18,7 @@ it('can store a remote mission', function () {
         'role' => 'client',
     ]);
 
-    actingAs($user)
+    $response = actingAs($user)
         ->post(
             uri: route('mission.store'),
             data: [
@@ -30,11 +28,13 @@ it('can store a remote mission', function () {
                 'remuneration' => $remuneration = fake()->randomNumber(5, false),
                 'remote' => true,
             ]
-        )->assertRedirectToRoute('mission.show', ['id' => 1]);
+        );
 
     assertDatabaseCount('missions', 1);
 
     $mission = Mission::first();
+
+    $response->assertRedirectToRoute('mission.show', ['id' => $mission->id]);
 
     expect($mission->user_id)->toBe($user->id);
     expect($mission->title)->toBe($title);
@@ -48,7 +48,7 @@ it('can store a local mission', function () {
         'role' => 'client',
     ]);
 
-    actingAs($user)
+    $response = actingAs($user)
         ->post(
             uri: route('mission.store'),
             data: [
@@ -60,11 +60,13 @@ it('can store a local mission', function () {
                 'postalCode' => $postalcode = fake()->regexify('\d{5}'),
                 'city' => $city = fake()->city,
             ]
-        )->assertRedirectToRoute('mission.show', ['id' => 2]);
+        );
+
+    $mission = Mission::first();
 
     assertDatabaseCount('missions', 1);
 
-    $mission = Mission::first();
+    $response->assertRedirectToRoute('mission.show', ['id' => $mission->id]);
 
     expect($mission->user_id)->toBe($user->id);
     expect($mission->title)->toBe($title);

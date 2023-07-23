@@ -116,15 +116,15 @@
         }
     };
 
-    /* const updateStatus = () => {
-        router.visit('/mission/updateStatus/' + props.mission.id , {
+    const updateStatus = () => {
+        router.visit( route('mission.updateStatus', { id: props.mission.id }) , {
             method: 'put',
         });
     };
 
     const updateGrantedStatus = () => {
-        router.visit('/mission/updateGrantedStatus/' + props.mission.id , {
+        router.visit(route('mission.updateGrantedStatus', { id: props.mission.id }) , {
             method: 'put',
         });
-    }; */
+    };
 </script>
