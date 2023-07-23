@@ -1,0 +1,27 @@
+{
+    "mission_status": {
+        "open": {
+            "translate": "Ouvert"
+        },
+        "closed": {
+            "translate": "Fermé"
+        },
+        "granted": {
+            "translate": "Pourvus"
+        }
+    },
+    "proposal_status": {
+        "waiting": {
+            "translate": "En cour"
+        },
+        "accepted": {
+            "translate": "Accepté"
+        },
+        "refused": {
+            "translate": "Refusé"
+        },
+        "negotiated": {
+            "translate": "En cour"
+        }
+    }
+}

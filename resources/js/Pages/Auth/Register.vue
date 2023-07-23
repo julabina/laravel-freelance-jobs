@@ -5,18 +5,28 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 const form = useForm({
     name: '',
     email: '',
     password: '',
     password_confirmation: '',
+    role: '',
 });
 
+const roleError = ref(false);
+
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+    roleError.value = false;
+
+    if (form.role !== "") {
+        form.post(route('register'), {
+            onFinish: () => form.reset('password', 'password_confirmation'),
+        });
+    } else {
+        roleError.value = true;
+    }
 };
 </script>
 
@@ -84,6 +94,18 @@ const submit = () => {
                 />
 
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
+            </div>
+
+            <div class="mt-4">
+                <p v-if="roleError === true" class="text-error">Que recherchez vous ? Indiquez le ci-dessous</p>
+                <div class="pt-2">
+                    <input v-model="form.role" value="freelance" class="mb-1 mr-2" type="radio" name="role" id="roleFreelance">
+                    <label for="roleFreelance">Je cherche des missions</label>
+                </div>
+                <div class="pt-2">
+                    <input v-model="form.role" value="client" class="mb-1 mr-2" type="radio" name="role" id="roleClient">
+                    <label for="roleClient">Je cherche des talents</label>
+                </div>
             </div>
 
             <div class="flex items-center justify-end mt-4">

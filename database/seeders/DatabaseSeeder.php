@@ -21,13 +21,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@test.fr',
             'role' => 'admin',
         ]);
-        
+
         User::factory()->create([
             'name' => 'Julien',
             'email' => 'test@test.fr',
             'role' => 'freelance',
         ]);
-        
+
         User::factory()->create([
             'name' => 'Roger',
             'email' => 'test2@test.fr',

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Mission\CreateController;
+use App\Http\Controllers\Mission\ShowController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +18,13 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::middleware(['auth', 'verified'])->get('/', [HomeController::class, 'show'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::prefix('/mission')->as('mission.')->middleware(['auth'])->group(function () {
+    Route::middleware('isClient')->get('/créer', [CreateController::class, 'showCreate'])->name('create');
+    Route::middleware('isClient')->post('/create', [CreateController::class, 'store'])->name('store');
+    Route::get('/{id}', [ShowController::class, 'show'])->name('show');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
