@@ -18,7 +18,7 @@
                 <p v-if="mission.remote === true">Offre en télétravail</p>
                 <p v-else>{{ mission.postalcode }} - {{ mission.city }}</p>
             </section>
-           <!--  <section v-if="$page.props.auth.user.role === 'freelance'">
+           <section v-if="$page.props.auth.user.role === 'freelance'">
                 <section v-if="mission.mission_proposal.length === 0" class="">
                     <input @click="toggleForm = true" v-if="toggleForm === false" type="button" value="Soumettre une proposition" class="btn-primary">
                     <form v-else @submit.prevent="proposal">
@@ -42,7 +42,7 @@
                     <h2>Proposition envoyée</h2>
                 </section>
             </section>
-            <section v-if="$page.props.auth.user.role === 'client'">
+             <section v-if="$page.props.auth.user.role === 'client'">
                 <h2 v-if="$page.props.flash.message">{{ $page.props.flash.message }}</h2>
                 <div class="flex items-center">
                     <div :class="mission.status === 'open' ? 'h-2.5  w-2.5 rounded-full bg-green-500' : mission.status === 'closed' ? 'h-2.5  w-2.5 rounded-full bg-red-500' : 'h-2.5  w-2.5 rounded-full bg-blue-500'"></div>
@@ -62,14 +62,14 @@
                     </div>
                     <p v-else>Aucune proposition</p>
                 </div>
-            </section> -->
+            </section>
         </template>
     </AuthenticatedLayout>
 </template>
 
 <script setup>
     import Menu from '@/Components/Menu.vue';
-    //import MissionProposal from '@/Components/MissionProposal.vue';
+    import MissionProposal from '@/Components/MissionProposal.vue';
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import { router, useForm } from '@inertiajs/vue3';
     import { ref, computed, onMounted } from 'vue';
@@ -102,8 +102,8 @@
     });
     const v$ = useVuelidate(rules, form);
 
-    /* const like = () => {
-        router.visit('/mission/like/' + props.mission.id , {
+    const like = () => {
+        router.visit(route('mission.like', {'id': props.mission.id}) , {
             method: 'put',
         });
     };
@@ -116,7 +116,7 @@
         }
     };
 
-    const updateStatus = () => {
+    /* const updateStatus = () => {
         router.visit('/mission/updateStatus/' + props.mission.id , {
             method: 'put',
         });

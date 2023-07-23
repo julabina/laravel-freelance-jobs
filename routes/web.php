@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Mission\CreateController;
+use App\Http\Controllers\Mission\FreelanceInteractController;
 use App\Http\Controllers\Mission\ShowController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -23,6 +24,9 @@ Route::middleware(['auth', 'verified'])->get('/', [HomeController::class, 'show'
 Route::prefix('/mission')->as('mission.')->middleware(['auth'])->group(function () {
     Route::middleware('isClient')->get('/créer', [CreateController::class, 'showCreate'])->name('create');
     Route::middleware('isClient')->post('/create', [CreateController::class, 'store'])->name('store');
+    Route::middleware('isFreelance')->get('/all', [ShowController::class, 'list'])->name('list');
+    Route::middleware('isFreelance')->put('/like/{id}', [FreelanceInteractController::class, 'like'])->name('like');
+    Route::middleware('isFreelance')->post('/proposal', [FreelanceInteractController::class, 'proposal'])->name('proposal');
     Route::get('/{id}', [ShowController::class, 'show'])->name('show');
 });
 

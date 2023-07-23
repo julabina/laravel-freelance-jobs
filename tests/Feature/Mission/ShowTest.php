@@ -13,3 +13,11 @@ it('has a mission page', function () {
 
     $this->get(route('mission.show', ['id' => $mission->id]))->assertOk();
 });
+
+it('has a list missions page', function () {
+    actingAs(User::factory()->create([
+        'role' => 'freelance',
+    ]));
+
+    $this->get(route('mission.list'))->assertOk();
+});
