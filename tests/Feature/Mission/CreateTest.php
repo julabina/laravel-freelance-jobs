@@ -8,7 +8,9 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseCount;
 
 it('has a create mission page', function () {
-    actingAs(User::factory()->create());
+    actingAs(User::factory()->create([
+        'role' => 'client',
+    ]));
 
     $this->get(route('mission.create'))->assertOk();
 });
