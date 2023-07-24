@@ -9,7 +9,9 @@ use function Pest\Laravel\actingAs;
 it('has a mission page', function () {
     $mission = Mission::factory()->create();
 
-    actingAs(User::factory()->create())->get(route('mission.show', ['id' => $mission->id]))->assertOk();
+    actingAs(User::factory()->create([
+        'role' => 'freelance',
+    ]))->get(route('mission.show', ['id' => $mission->id]))->assertOk();
 });
 
 it('has a list missions page', function () {
