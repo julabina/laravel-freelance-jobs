@@ -38,7 +38,7 @@ it('create a new message', function () {
         );
 
     assertDatabaseCount('messages', 1);
-    
+
     $message = Message::first();
 
     expect($message->user_id)->toBe($user->id);
