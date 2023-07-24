@@ -22,7 +22,7 @@ it('update the mission status to closed', function () {
     actingAs($user)
         ->put(
             uri: route('mission.updateStatus', ['id' => $mission->id]),
-        )->assertRedirectToRoute('mission.show', ['id' => $mission->id]);
+        );
 
     $mission = Mission::first();
 
@@ -45,7 +45,7 @@ it('update the mission status to open', function () {
     actingAs($user)
         ->put(
             uri: route('mission.updateStatus', ['id' => $mission->id]),
-        )->assertRedirectToRoute('mission.show', ['id' => $mission->id]);
+        );
 
     $mission = Mission::first();
 
@@ -68,7 +68,7 @@ it('update the mission status to granted', function () {
     actingAs($user)
         ->put(
             uri: route('mission.updateGrantedStatus', ['id' => $mission->id]),
-        )->assertRedirectToRoute('mission.show', ['id' => $mission->id]);
+        );
 
     $mission = Mission::first();
 
@@ -91,7 +91,7 @@ it('update the granted mission status to open', function () {
     actingAs($user)
         ->put(
             uri: route('mission.updateGrantedStatus', ['id' => $mission->id]),
-        )->assertRedirectToRoute('mission.show', ['id' => $mission->id]);
+        );
 
     $mission = Mission::first();
 

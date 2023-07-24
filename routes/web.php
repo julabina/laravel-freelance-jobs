@@ -30,6 +30,7 @@ Route::prefix('/mission')->as('mission.')->middleware(['auth'])->group(function 
     Route::middleware('isFreelance')->get('/all', [ShowController::class, 'list'])->name('list');
     Route::middleware('isFreelance')->put('/like/{id}', [FreelanceInteractController::class, 'like'])->name('like');
     Route::middleware('isFreelance')->post('/proposal', [FreelanceInteractController::class, 'proposal'])->name('proposal');
+    Route::middleware('isFreelance')->delete('/remove-proposal/{id}', [FreelanceInteractController::class, 'remove'])->name('remove');
     Route::middleware('isClient')->put('/updateStatus/{id}', [ClientInteractController::class, 'updateStatus'])->name('updateStatus');
     Route::middleware('isClient')->put('/updateGranted/{id}', [ClientInteractController::class, 'updateGrantedStatus'])->name('updateGrantedStatus');
     Route::middleware('isClient')->put('/updateProposal/{id}', [ClientInteractController::class, 'updateProposal'])->name('updateProposal');

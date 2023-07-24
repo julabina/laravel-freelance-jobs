@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Mission\ProposalRequest;
 use App\Models\Mission;
 use App\Models\MissionLike;
+use App\Models\MissionMessaging;
 use App\Models\MissionProposal;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -28,13 +30,7 @@ class FreelanceInteractController extends Controller
             $missionLike->delete();
         }
 
-        $url = $request->card ? 'mission.list' : ($request->home ? 'dashboard' : null);
-
-        if ($url !== null) {
-            return redirect()->route($url);
-        } else {
-            return redirect()->route('mission.show', ['id' => $id]);
-        }
+        return back();
     }
 
     /**
@@ -63,5 +59,26 @@ class FreelanceInteractController extends Controller
         }
 
         return redirect()->route('mission.show', ['id' => $request->id])->with('message', 'Proposition envoyé avec succes');
+    }
+
+    /**
+     * remove proposal for one mission
+     */
+    public function remove(int $id, Request $request): RedirectResponse
+    {
+        $proposal = MissionProposal::where('mission_id', $id)->where('user_id', $request->user()->id)->first();
+
+        if ($proposal !== null && $proposal->status !== 'granted') {
+            $messaging = MissionMessaging::where('mission_id', $id)->where('user_id', $request->user()->id)->first();
+            $proposal->delete();
+
+            if ($messaging !== null) {
+                $messaging->delete();
+            }
+
+            return back();
+        } else {
+            return redirect(RouteServiceProvider::HOME);
+        }
     }
 }

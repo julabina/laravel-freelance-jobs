@@ -29,7 +29,7 @@ class ClientInteractController extends Controller
 
             $mission->save();
 
-            return redirect()->route('mission.show', ['id' => $id]);
+            return back();
         }
 
         return redirect()->route('dashboard');
@@ -51,7 +51,7 @@ class ClientInteractController extends Controller
 
             $mission->save();
 
-            return redirect()->route('mission.show', ['id' => $id]);
+            return back();
         }
 
         return redirect()->route('dashboard');

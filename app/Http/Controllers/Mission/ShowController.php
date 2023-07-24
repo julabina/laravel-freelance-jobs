@@ -55,7 +55,7 @@ class ShowController extends Controller
         $column = 'created_at';
         $sort = 'ASC';
 
-        $missions = Mission::with(['mission_like' => function ($query) use ($user) {
+        $missions = Mission::orderBy('updated_at', 'desc')->with(['mission_like' => function ($query) use ($user) {
             $query->where('user_id', '=', $user->id);
         }])->with('user')->paginate(50)->through(function ($missions) {
             return [
