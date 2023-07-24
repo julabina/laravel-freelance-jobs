@@ -1,8 +1,8 @@
 <template>
-    <article class="border p-4 my-2">
+    <article class="border-primary border rounded-lg border-opacity-25 p-6 mt-10">
         <p class="font-semibold">{{ statusTranslate }}</p>
-        <p>Proposition envoyé par {{ proposal.user.name }}</p>
-        <p class="border border-dashed p-2 text-gray-700">{{ proposal.message }}</p>
+        <p class="mb-6">Proposition envoyé par {{ proposal.user.name }}</p>
+        <p class="border border-dashed p-2 mb-8 text-gray-700">{{ proposal.message }}</p>
         <div v-if="proposal.status === 'waiting'" class="flex justify-center mt-4">
             <button @click="negociated" class="btn-primary mx-1.5">Discuter avec le candidat</button>
             <button @click="refuse" class="btn-primary mx-1.5">Refuser le candidat</button>

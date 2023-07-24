@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mission;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Mission\ProposalRequest;
+use App\Models\Message;
 use App\Models\Mission;
 use App\Models\MissionLike;
 use App\Models\MissionMessaging;
@@ -73,7 +74,15 @@ class FreelanceInteractController extends Controller
             $proposal->delete();
 
             if ($messaging !== null) {
+                $messages = Message::where('mission_messaging_id', $messaging->id)->get();
+
                 $messaging->delete();
+
+                if (count($messages) > 0) {
+                    foreach ($messages as $key => $message) {
+                        $message->delete();
+                    }
+                }
             }
 
             return back();

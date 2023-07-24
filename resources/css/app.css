@@ -21,10 +21,14 @@
     }
 
     .btn-primary {
-        @apply border-2 border-primary text-primary font-semibold py-1 px-2 rounded cursor-pointer transition-colors hover:bg-primary hover:text-white hover:transition-colors;
+        @apply border-2 border-primary text-primary uppercase font-semibold h-10 px-2.5 rounded-lg cursor-pointer transition-colors hover:bg-primary hover:text-white hover:transition-colors;
     }
 
     .btn-secondary {
-        @apply border-2 border-secondary text-secondary font-semibold py-1 px-2 rounded cursor-pointer transition-colors hover:bg-secondary hover:text-white hover:transition-colors;
+        @apply border-2 border-secondary text-secondary uppercase font-semibold h-10 px-2.5 rounded-lg cursor-pointer transition-colors hover:bg-secondary hover:text-white hover:transition-colors;
+    }
+
+    .link-primary {
+        @apply text-primary underline;
     }
 }

@@ -8,7 +8,7 @@
         </template>
 
         <template #main>
-            <h1 class="title">Toutes les missions disponibles</h1>
+            <h1 class="title mb-12 mt-8 ml-4">Toutes les missions disponibles</h1>
             <section>
                 <MissionCard v-for="(mission, ind) in missions.data" :key="'missionCard' + ind" :mission="mission" />
             </section>

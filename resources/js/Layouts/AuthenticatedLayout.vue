@@ -12,14 +12,16 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div>
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-200">
 
-            <header v-if="$slots.header" class="">
-                <slot name="header"/>
+            <header v-if="$slots.header" class="md:h-16 bg-white shadow">
+                <div class="h-full max-w-7xl mx-auto">
+                    <slot name="header" />
+                </div>
             </header>
 
             <!-- Page Content -->
-            <main class="w-full min-h-screen p-8">
+            <main class="w-full grow max-w-7xl mx-auto px-4 pb-8 sm:px-6 lg:px-8">
                 <slot name="main"/>
             </main>
         </div>

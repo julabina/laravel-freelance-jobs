@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Mission;
 
+use App\Models\Message;
 use App\Models\Mission;
 use App\Models\MissionLike;
 use App\Models\MissionMessaging;
@@ -114,6 +115,11 @@ it('remove proposal', function () {
         'user_id' => $userFreelance->id,
         'status' => 'open',
     ]);
+    $messages = Message::factory(3)->create([
+        'mission_messaging_id' => $messaging->id,
+        'user_id' => $user->id,
+        'message' => fake()->sentence(6),
+    ]);
 
     actingAs($userFreelance)
         ->delete(
@@ -122,4 +128,5 @@ it('remove proposal', function () {
 
     assertDatabaseCount('mission_messagings', 0);
     assertDatabaseCount('mission_proposals', 0);
+    assertDatabaseCount('messages', 0);
 });
