@@ -6,7 +6,7 @@
         <p v-if="mission.remote === true">Télétravail</p>
         <p v-else>{{ mission.postalcode }} - <span class="first-letter:uppercase">{{ mission.city }}</span></p>
         <p class="mt-5">Il y a {{ mission.proposal_count }} proposition pour cette mission.</p>
-        <i @click="like" :class="mission.mission_like.length === 1 ? 'absolute top-6 right-8 cursor-pointer fa-solid fa-heart' : 'absolute top-6 right-8 cursor-pointer fa-regular fa-heart'"></i>
+        <i @click="like" :class="mission.mission_like.length === 1 ? 'bg-white absolute top-6 right-8 cursor-pointer fa-solid fa-heart' : 'bg-white absolute top-6 right-8 cursor-pointer fa-regular fa-heart'"></i>
     </article>
 </template>
 

@@ -51,10 +51,10 @@
                         <button @click="updateStatus" v-if="mission.status !== 'granted'" class="btn-primary ml-6">{{ mission.status === 'open' ? 'Desactiver l\'offre' : 'Réouvrir l\'offre' }}</button>
                     </div>
                     <div class="flex flex-col">
-                        <div class="flex justify-between">
+                        <div class="flex flex-col-reverse md:flex-row justify-between">
                             <h3 class="text-lg font-semibold">Toutes les propositions</h3>
                             <div class="flex items-center">
-                                <button @click="updateGrantedStatus" :class="mission.status === 'granted' ? 'ml-1.5 btn-primary' : 'ml-1.5 btn-secondary'">{{ mission.status === 'granted' ? 'Réouvrir la mission' : 'Rendre la mission pourvus' }}</button>
+                                <button @click="updateGrantedStatus" :class="mission.status === 'granted' ? 'mb-2 md:mb-0 md:ml-1.5 btn-primary' : 'mb-2 md:mb-0 md:ml-1.5 btn-secondary'">{{ mission.status === 'granted' ? 'Réouvrir la mission' : 'Rendre la mission pourvus' }}</button>
                             </div>
                         </div>
                         <div v-if="mission.mission_proposal.length > 0" class="flex flex-col">
